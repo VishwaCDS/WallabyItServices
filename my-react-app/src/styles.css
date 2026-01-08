@@ -1,0 +1,969 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+/* General Reset */
+:root {
+  /* Keep your existing colors */
+  --wallaby-navy: #001f3f;
+  --wallaby-cyan: #00d4ff;
+  /* Add your new primary font variable */
+  --primary-font: "Inter", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--primary-font); /* Applies Inter to everything */
+}
+
+body {
+  font-family: var(--primary-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Specific heading weights for that "IT brand" look */
+h1,
+h2,
+h3 {
+  font-weight: 800; /* Boldest weight for main titles */
+  letter-spacing: -0.02em; /* Inter looks best slightly tight */
+}
+
+p {
+  font-weight: 400; /* Regular weight for readability */
+  line-height: 1.6;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* WHITE HEADER STYLES */
+.main-header {
+  display: flex;
+  justify-content: space-between; /* Pushes logo to left and nav to right */
+  align-items: center; /* Centers items vertically */
+  padding: 15px 5%; /* Adds consistent horizontal breathing room */
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--wallaby-navy); /* Dark text on white background */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.logo span {
+  color: var(--wallaby-cyan);
+}
+
+.nav-links ul {
+  display: flex;
+  align-items: center; /* Ensures text and button are on the same line */
+  list-style: none;
+  gap: 30px; /* Creates equal spacing between all menu items */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: var(--wallaby-navy); /* Dark text for links */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--wallaby-cyan);
+}
+
+.cta-button {
+  background-color: var(--wallaby-navy); /* Dark button for contrast */
+  color: var(--white) !important;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.cta-button:hover {
+  background-color: var(--wallaby-cyan);
+  color: var(--wallaby-navy) !important;
+  transform: translateY(-2px);
+}
+
+/* MAIN CONTENT AREA */
+main {
+  flex: 1;
+}
+
+/* HERO SECTION (To match your white header mockup) */
+.hero-section {
+  background: linear-gradient(rgba(0, 31, 63, 0.7), rgba(0, 31, 63, 0.7)),
+    url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80");
+  background-size: cover;
+  padding: 120px 10%;
+  color: white;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+}
+.hero-section h1 span {
+  color: var(--wallaby-cyan);
+}
+
+/* FOOTER */
+.main-footer {
+  background-color: var(--light-gray);
+  padding: 40px 10%;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
+.header-logo {
+  /* Adjust this number to find your perfect size */
+  height: 60px;
+  width: auto; /* Keeps the aspect ratio perfect */
+  display: block;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Optional: Add some padding to give the logo breathing room */
+.logo-container {
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .header-logo {
+    height: 45px; /* Smaller size for phones */
+  }
+}
+
+/* Banner Styles     */
+/* Container for the banner */
+.home-banner {
+  width: 100%;
+  overflow: hidden; /* Prevents scrollbars if image is slightly too large */
+  line-height: 0; /* Removes tiny white gap at the bottom of images */
+}
+
+.banner-container {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* Adjust this: 60vh is 60% of screen height, 100vh is full screen */
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This is the magic: it crops the image to fill the space perfectly */
+  object-position: center; /* Keeps the center of the 4K image visible */
+  display: block;
+}
+
+/* Optional: Darkens the image slightly so your white header stands out more */
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+/* Mobile View: Adjust height so it doesn't look too thin on phones */
+@media (max-width: 768px) {
+  .banner-container {
+    height: 40vh;
+  }
+}
+
+/* --- CLEAN BANNER STYLES --- */
+
+.home-banner {
+  width: 100%;
+  position: relative; /* Container must be relative for absolute text centering */
+  overflow: hidden;
+}
+
+.banner-container {
+  position: relative;
+  width: 100%;
+  height: 70vh; /* Increased height to give text more room */
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 31, 63, 0.5); /* Navy tint helps white text stand out */
+  z-index: 5;
+}
+
+/* FIXING THE OVERLAP HERE */
+.banner-text-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  width: 80%; /* Limits width so text doesn't hit the edges */
+  color: #ffffff;
+  pointer-events: none; /* Prevents text from blocking clicks on the banner */
+}
+
+.banner-text-content h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2; /* Prevents lines from overlapping vertically */
+}
+
+.banner-text-content p {
+  font-size: 1.4rem;
+  margin-top: 15px;
+  letter-spacing: 1px;
+}
+
+/* Service Cards Container */
+
+/* --- SERVICES SECTION STYLES --- */
+
+.services-section {
+  padding: 80px 10%;
+  background-color: #fcfcfc; /* Very light gray to make white cards pop */
+}
+
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); /* Responsive grid */
+  gap: 30px;
+}
+
+.service-card {
+  background: var(--white);
+  padding: 40px 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Soft shadow from mockup */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--wallaby-navy);
+}
+
+.service-card h3 {
+  color: var(--wallaby-navy);
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.service-card p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.service-btn {
+  background: transparent;
+  border: 1px solid #ddd;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.service-btn:hover {
+  background: var(--wallaby-navy);
+  color: white;
+  border-color: var(--wallaby-navy);
+}
+
+/* --- MODERN FOOTER STYLES --- */
+
+.main-footer {
+  background-color: var(--white);
+  padding: 40px 10% 20px;
+  border-top: 1px solid #eeeeee; /* Light divider line */
+  margin-top: auto; /* Ensures it stays at the bottom of the page */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.footer-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 20px;
+}
+
+.social-icon {
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+  color: #999;
+  font-size: 0.8rem;
+}
+
+/* Mobile Fix: Stack elements on top of each other */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
+/* --- ICON STYLING --- */
+
+.footer-icon-img {
+  color: var(--wallaby-navy);
+  font-size: 1.1rem;
+}
+
+.social-icon-img {
+  color: var(--wallaby-navy); /* Match the navy blue from your design */
+  font-size: 1.5rem; /* Control exactly how big they look */
+  transition: color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.social-icon-img:hover {
+  color: var(--wallaby-cyan); /* Hover effect using your brand cyan */
+  transform: translateY(-3px);
+}
+
+.footer-socials a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* --- ABOUT SECTION STYLES --- */
+
+.about-section {
+  padding: 60px 10%;
+  background-color: var(--white);
+}
+
+.about-banner-container {
+  width: 100%;
+  margin-bottom: 50px;
+  overflow: hidden;
+  border-radius: 20px; /* Gives the image the rounded "card" look from mockup */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.story-container {
+  text-align: left;
+}
+
+.story-container h2 {
+  font-size: 2rem;
+  color: var(--wallaby-navy);
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.story-item p {
+  color: #555;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.learn-more-btn {
+  background: transparent;
+  border: 2px solid var(--wallaby-navy);
+  color: var(--wallaby-navy);
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.learn-more-btn:hover {
+  background: var(--wallaby-navy);
+  color: var(--white);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 40px 5%;
+  }
+  .story-grid {
+    gap: 20px;
+  }
+}
+
+/* Container must be relative so the absolute text stays inside it */
+.about-banner-container {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+}
+
+.about-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- THE OVERLAY TEXT --- */
+.about-banner-text {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 5%; /* Align to the left like the mockup */
+  transform: translateY(-50%);
+  z-index: 10;
+  max-width: 400px; /* Keeps text from stretching too far */
+}
+
+.about-banner-text h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--wallaby-navy); /* Dark text color from your variables */
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.about-banner-text h2 span {
+  display: block;
+  color: #555; /* Slightly lighter for the second part of the title */
+  font-size: 1.8rem;
+}
+
+.about-banner-text p {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Mobile Fix: Make text smaller and move to top on phones */
+@media (max-width: 768px) {
+  .about-banner-text {
+    position: relative; /* Remove absolute positioning on mobile */
+    top: 0;
+    left: 0;
+    transform: none;
+    padding: 20px;
+    background: #f8f9fa;
+  }
+}
+
+/* Container must be relative so the absolute text stays inside it */
+.about-banner-container {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+}
+
+.about-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- THE OVERLAY TEXT --- */
+.about-banner-text {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 5%; /* Align to the left like the mockup */
+  transform: translateY(-50%);
+  z-index: 10;
+  max-width: 400px; /* Keeps text from stretching too far */
+}
+
+.about-banner-text h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--wallaby-navy); /* Dark text color from your variables */
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.about-banner-text h2 span {
+  display: block;
+  color: #555; /* Slightly lighter for the second part of the title */
+  font-size: 1.8rem;
+}
+
+.about-banner-text p {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Mobile Fix: Make text smaller and move to top on phones */
+@media (max-width: 768px) {
+  .about-banner-text {
+    position: relative; /* Remove absolute positioning on mobile */
+    top: 0;
+    left: 0;
+    transform: none;
+    padding: 20px;
+    background: #f8f9fa;
+  }
+}
+
+/* --- SERVICES SECTION (Clean Fix) --- */
+.services-section {
+  padding: 80px 10%;
+  background-color: #fcfcfc; /* Light gray background instead of image */
+  text-align: center;
+}
+
+.services-header h2 {
+  font-size: 2.5rem;
+  color: var(--wallaby-navy);
+  margin-bottom: 10px;
+}
+
+.services-header p {
+  color: #666;
+  margin-bottom: 50px;
+}
+
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.service-card {
+  background: var(--white);
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Soft shadow from mockup */
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+}
+
+.service-icon {
+  font-size: 3rem;
+  color: var(--wallaby-cyan);
+  margin-bottom: 20px;
+}
+
+.service-card h3 {
+  color: var(--wallaby-navy);
+  margin-bottom: 15px;
+}
+
+.service-card ul {
+  list-style: none;
+  text-align: left;
+  color: #555;
+}
+
+.service-card li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.service-card li::before {
+  content: "•";
+  color: var(--wallaby-cyan);
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+/* --- BUTTON STYLING --- */
+.services-button-wrapper {
+  display: flex;
+  justify-content: center; /* Centers the button */
+  margin-top: 40px; /* Space below the cards */
+  padding-bottom: 20px;
+}
+
+.see-more-btn {
+  background-color: var(--wallaby-navy);
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.see-more-btn:hover {
+  background-color: var(--wallaby-cyan);
+  color: var(--wallaby-navy);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- SERVICES GRID FIX --- */
+.services-section {
+  padding: 80px 10%;
+  background-color: #f8f9fa; /* Light gray to replace the background image */
+}
+
+.services-container {
+  display: grid;
+  /* Automatically fits as many cards as possible based on screen size */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.service-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05); /* Soft shadow from mockup */
+  transition: transform 0.3s ease;
+  border-top: 4px solid var(--wallaby-navy); /* Subtle navy accent */
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  border-top-color: var(--wallaby-cyan); /* Changes to cyan on hover */
+}
+
+.service-icon {
+  font-size: 2.5rem;
+  color: var(--wallaby-navy);
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  color: var(--wallaby-navy);
+  margin-bottom: 15px;
+}
+
+.service-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.service-card li {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 20px;
+}
+
+/* Bullet points from your visual style */
+.service-card li::before {
+  content: "•";
+  color: var(--wallaby-cyan);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Update the button text color to white */
+.cta-button {
+  background-color: var(--wallaby-navy); /* Matches your brand navy */
+  color: #ffffff !important; /* Forces the text to stay white */
+}
+
+/* Optional: Ensure it stays readable when you hover over it */
+.cta-button:hover {
+  background-color: var(--wallaby-cyan);
+  color: var(
+    --wallaby-navy
+  ) !important; /* Text changes to navy on cyan hover */
+}
+
+/* --- FLOATING CHAT BUTTON --- */
+.floating-chat-container {
+  position: fixed;
+  bottom: 30px; /* Distance from bottom */
+  right: 30px; /* Distance from right */
+  z-index: 1000; /* Ensures it stays above all other content */
+}
+
+.chat-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Makes it a perfect circle */
+  background-color: var(--wallaby-navy); /* Your brand navy */
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.chat-button:hover {
+  background-color: #00bcd4; /* Your brand cyan for interaction */
+  transform: scale(1.1); /* Slight pop effect on hover */
+}
+
+.floating-chat-wrapper {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+}
+
+.chat-window {
+  width: 320px;
+  height: 400px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: popIn 0.3s ease-out; /* Adds a smooth entrance */
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.chat-header {
+  background: var(--wallaby-navy); /* */
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-body {
+  flex: 1;
+  padding: 15px;
+  background: #f8f9fa;
+}
+
+.chat-toggle-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--wallaby-navy);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  float: right;
+  transition: transform 0.2s;
+}
+
+.chat-toggle-button:hover {
+  transform: scale(1.1);
+}
+
+/* --- CHAT FOOTER REFINEMENT --- */
+.chat-footer {
+  padding: 15px;
+  background: #ffffff;
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-footer input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px; /* Gives it a pill shape like modern apps */
+  font-family: "Inter", sans-serif; /* Matches your site */
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.chat-footer input:focus {
+  border-color: var(--wallaby-navy); /* Brand color */
+}
+
+.send-btn {
+  background: none;
+  border: none;
+  color: var(--wallaby-navy); /* Matches your brand identity */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.send-btn:hover {
+  color: #00bcd4; /* Brand cyan highlight */
+  transform: scale(1.1);
+}
+
+/* Blurred Backdrop */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 25, 47, 0.7); /* Using brand navy tint */
+  backdrop-filter: blur(8px); /* The blur effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal Box */
+.modal-content {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  font-family: "Inter", sans-serif; /* Brand font consistency */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.modal-form input,
+.modal-form textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+}
+
+/* Submit Button */
+.submit-btn {
+  background-color: var(--wallaby-navy); /* */
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #00bcd4; /* Brand cyan highlight */
+}
+
+/* Close Button */
+.close-modal-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #888;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
