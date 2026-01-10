@@ -1,42 +1,31 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Node.js CI
 
 on:
   push:
     branches: [ "master" ]
-    # Optional: Only run this when files in the backend folder change
-    paths:
-      - 'backend/**'
   pull_request:
     branches: [ "master" ]
-    paths:
-      - 'backend/**'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # CHANGE THIS LINE
+    runs-on: self-hosted 
 
-    strategy:
-      matrix:
-        node-version: [22.x]
-
-    # This sets the default directory for all 'run' commands in this job
     defaults:
       run:
-        working-directory: ./backend
+        # Based on your image image_d7ca63.jpg, your folder name is 'BACKEND' (all caps)
+        working-directory: ./BACKEND
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 22.x
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '22.x'
         cache: 'npm'
-        # Crucial: Tells GitHub where the lock file is for caching
-        cache-dependency-path: './backend/package-lock.json'
+        # Matching your folder name 'BACKEND'
+        cache-dependency-path: './BACKEND/package-lock.json'
 
     - name: Install dependencies
       run: npm ci
