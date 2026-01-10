@@ -8,16 +8,15 @@ on:
 
 jobs:
   build:
-    # This tells GitHub to use your local machine/server instead of cloud runners
     runs-on: self-hosted 
 
     defaults:
       run:
-        # Based on your image image_d7ca63.jpg, your folder name is 'BACKEND'
+        # Matches your folder name in image_d7ca63.jpg
         working-directory: ./BACKEND
 
     steps:
-    - name: Checkout code
+    - name: Checkout Repository
       uses: actions/checkout@v4
 
     - name: Use Node.js 22.x
@@ -25,17 +24,18 @@ jobs:
       with:
         node-version: '22.x'
         cache: 'npm'
-        # Ensures the runner finds your lock file inside the BACKEND folder
         cache-dependency-path: './BACKEND/package-lock.json'
 
     - name: Install dependencies
       run: npm ci
 
+    - name: Create .env file
+      # This fix ensures the secret is written as a Key=Value pair
+      # We use double quotes to handle special characters in the URI
+      run: |
+        touch .env
+        echo "MONGO_URI=\"${{ secrets.MONGO_URI }}\"" > .env
+        echo "PORT=${{ secrets.PORT }}" >> .env
+
     - name: Build project
       run: npm run build --if-present
-
-    - name: Setup Environment File
-      # This creates the .env file with the correct Key=Value format
-      run: |
-          touch .env
-          echo "MONGO_URI=${{ secrets.MONGO_URI }}" > .env
