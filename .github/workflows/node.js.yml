@@ -12,7 +12,6 @@ jobs:
 
     defaults:
       run:
-        # Matches your folder name in image_d7ca63.jpg
         working-directory: ./BACKEND
 
     steps:
@@ -30,11 +29,10 @@ jobs:
       run: npm ci
 
     - name: Create .env file
-      # This fix ensures the secret is written as a Key=Value pair
-      # We use double quotes to handle special characters in the URI
       run: |
         touch .env
-        echo "MONGO_URI=\"${{ secrets.MONGO_URI }}\"" > .env
+        # Use Option A (Fixing secrets) or update this line to match your secret format
+        echo "MONGO_URI=${{ secrets.MONGO_URI }}" > .env
         echo "PORT=${{ secrets.PORT }}" >> .env
 
     - name: Build project
