@@ -6,28 +6,45 @@ name: Node.js CI
 on:
   push:
     branches: [ "master" ]
+    # Optional: Only run this when files in the backend folder change
+    paths:
+      - 'backend/**'
   pull_request:
     branches: [ "master" ]
+    paths:
+      - 'backend/**'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    # This sets the default directory for all 'run' commands in this job
+    defaults:
+      run:
+        working-directory: ./backend
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: |
+        # Crucial: Tells GitHub where the lock file is for caching
+        cache-dependency-path: './backend/package-lock.json'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build project
+      run: npm run build --if-present
+
+    - name: Setup Environment File
+      run: |
           touch .env
-          echo "${{ secrets.MONGO_URI }}" > .env
+          echo "MONGO_URI=${{ secrets.MONGO_URI }}" > .env
