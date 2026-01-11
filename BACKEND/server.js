@@ -12,7 +12,8 @@ const app = express();
 // --- UPDATED MIDDLEWARE ---
 // This allows your Vercel frontend to talk to this AWS backend
 const allowedOrigins = [
-  "http://localhost:3000", // Your local frontend during dev
+  "http://localhost:3000",
+  "https://wallabyitservices.com.au", // Your local frontend during dev
   "http://3.107.183.213",
   // REPLACE THIS with your actual Vercel URL
 ];
